@@ -1,6 +1,8 @@
 # EmbeddedSource
 GoLang module to easily embed-and-latter-extract main.go source-code into the compiled-binary 
 
+
+
 # How to use
 
 ## Add into your main.go:
@@ -26,7 +28,6 @@ var EmbSrc = &EmbeddedSource.EmbeddedSource{
 ...
 func main() {
   ...
-  
   // When compiling, golang will automatically embed the *.go,go.mod,go.sum files into binary
   // When the program is executing, you can use EmbSrc to extract the source-files into subdir "extracted":
 	err = EmbSrc.FilesExtract("extracted")
@@ -38,6 +39,12 @@ func main() {
 ```
 
 And run `go get -u github.com/zipizap/EmbeddedSource`
+
+Now, when you latter compile your code, the golang compiler will embed the files `*.go  go.mod  go.sum` inside the compiled binary, and the program can then use `EmbSrc` to extract the embeded source-files to a a subdirectory.
+
+This can be usefull to store the source-code of small-go-programs with only a few .go files, and latter "extract" that source-code from the binary itself by using for example a "--flag"
+
+
 
 
 
