@@ -15,8 +15,6 @@ type EmbeddedSource struct {
 }
 
 func (es *EmbeddedSource) FilesList() (filenames []string, err error) {
-	// filenames := []string
-	// err := nil
 	if len(es.cachedlistfiles) > 0 {
 		// es.cachedlistfiles is already defined from a previous function-call
 		filenames = es.cachedlistfiles

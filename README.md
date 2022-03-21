@@ -6,13 +6,14 @@ GoLang module to easily embed-and-latter-extract main.go source-code into the co
 # How to use
 
 ## Add into your main.go:
+
+
 ```
 import (
   ...
 	"embed"
 	"github.com/zipizap/EmbeddedSource"
 )
-
 ...
 // Embed files: ./*.go ./go.sum ./go.mod
 // Does not embed subdirs:
@@ -28,21 +29,19 @@ var EmbSrc = &EmbeddedSource.EmbeddedSource{
 ...
 func main() {
   ...
-  // When compiling, golang will automatically embed the *.go,go.mod,go.sum files into binary
   // When the program is executing, you can use EmbSrc to extract the source-files into subdir "extracted":
-	err = EmbSrc.FilesExtract("extracted")
-	if err != nil {
+	if err = EmbSrc.FilesExtract("extracted"); err != nil {
 		log.Fatalln(err)
 	}
 }
 
 ```
 
-And run `go get -u github.com/zipizap/EmbeddedSource`
+And import it with `go get -u github.com/zipizap/EmbeddedSource`
 
-Now, when you latter compile your code, the golang compiler will embed the files `*.go  go.mod  go.sum` inside the compiled binary, and the program can then use `EmbSrc` to extract the embeded source-files to a a subdirectory.
+Now, when you latter `go run/build` the code, the golang compiler will embed the files `*.go  go.mod  go.sum` inside the compiled binary, and the program can then use `EmbSrc` to extract the embeded source-files to a subdirectory (ex: "extracted")
 
-This can be usefull to store the source-code of small-go-programs with only a few .go files, and latter "extract" that source-code from the binary itself by using for example a "--flag"
+This can be usefull to store the source-code of small-go-programs (with only a few .go files), and be able to latter "extract" the source-code from the binary itself, by using for example a "--flag"
 
 
 
